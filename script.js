@@ -104,6 +104,17 @@ async function main() {
     document.querySelector(".circle").style.left = parcent + "%";
     currentSong.currentTime = (currentSong.duration * parcent) / 100;
   });
+
+  // Add an event listner for hamburger
+
+  document.querySelector(".hamburger").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "0";
+  });
+
+  // Add an event listner for close button
+  document.querySelector(".close").addEventListener("click", () => {
+    document.querySelector(".left").style.left = "-100%";
+  });
 }
 
 main();
