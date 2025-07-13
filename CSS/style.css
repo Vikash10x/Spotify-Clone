@@ -201,13 +201,14 @@
 }
 
 .seekbar {
-  height: 2px;
+  height: 4px;
   width: 98%;
   background: black;
   border-radius: 10px;
   position: absolute;
   bottom: 0;
   margin: 6px 0px;
+  cursor: pointer;
 }
 
 .circle {
@@ -216,11 +217,21 @@
   position: relative;
   height: 13px;
   width: 13px;
-  top: -6px;
+  top: -5px;
   left: 0%;
   transition: left 0.5s;
 }
 
 .songbuttons img {
   cursor: pointer;
+}
+
+.songinfo,
+.songtime {
+  color: black;
+}
+
+.abovediv {
+  display: flex;
+  justify-content: space-between;
 }
