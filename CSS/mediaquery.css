@@ -1,0 +1,31 @@
+@media (max-width: 1400px) {
+  .left {
+    position: absolute;
+    transition: all 0.5s;
+    left: -100%;
+    z-index: 1;
+    width: 433px;
+    background-color: black;
+  }
+  .right {
+    width: 100vw;
+  }
+  .playbar {
+    width: 95vw;
+  }
+
+  .close {
+    display: block;
+    position: absolute;
+    right: 23px;
+    top: 23px;
+    cursor: pointer;
+    /* border: 1px solid gray;
+    border-radius: 50%; */
+  }
+
+  .hamburger {
+    display: block;
+    cursor: pointer;
+  }
+}

@@ -18,6 +18,10 @@
   padding-top: 14px;
 }
 
+.close {
+  display: none;
+}
+
 .heading {
   display: flex;
   width: 100%;
@@ -63,6 +67,17 @@
 
 .header > * {
   padding: 10px;
+}
+
+.hamburger {
+  display: none;
+}
+
+.hamburgerContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
 }
 
 .signUpbtn {
