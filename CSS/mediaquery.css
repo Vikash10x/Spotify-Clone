@@ -2,16 +2,21 @@
   .left {
     position: absolute;
     transition: all 0.5s;
-    left: -100%;
+    left: -120%;
     z-index: 1;
-    width: 433px;
+    width: 370px;
     background-color: black;
   }
   .right {
     width: 100vw;
   }
   .playbar {
-    width: 95vw;
+    width: calc(100vw - 52px);
+    /* width: 87vw; */
+  }
+  .seekbar {
+    width: calc(100vw - 54px);
+    /* width: 86vw; */
   }
 
   .close {
@@ -27,5 +32,13 @@
   .hamburger {
     display: block;
     cursor: pointer;
+  }
+  .card {
+    width: 100%;
+  }
+  .cardContainer {
+    justify-content: center;
+    overflow-y: auto;
+    margin: 0;
   }
 }

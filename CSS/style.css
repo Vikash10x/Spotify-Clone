@@ -71,6 +71,7 @@
 
 .hamburger {
   display: none;
+  margin-left: 28px;
 }
 
 .hamburgerContainer {
@@ -118,11 +119,11 @@
 }
 
 .cardContainer {
-  margin: 25px;
+  /* margin: 25px; */
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
   max-height: 70vh;
 }
 .card {
@@ -163,12 +164,12 @@
   background: #dad5d5;
   border-radius: 10px;
   position: fixed;
-  bottom: 32px;
+  bottom: 145px;
   filter: invert(1);
   width: 90%;
   padding: 10px;
   width: 70vw;
-  height: 40px;
+  min-height: 40px;
 }
 
 .songbuttons {
@@ -249,4 +250,5 @@
 .abovediv {
   display: flex;
   justify-content: space-between;
+  margin: 20px 0px;
 }
