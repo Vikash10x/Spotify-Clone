@@ -93,7 +93,7 @@ async function main() {
     console.log(currentSong.currentTime, currentSong.duration);
     document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(
       currentSong.currentTime
-    )}/${secondsToMinutesSeconds(currentSong.duration)}`;
+    )} / ${secondsToMinutesSeconds(currentSong.duration)}`;
     document.querySelector(".circle").style.left =
       (currentSong.currentTime / currentSong.duration) * 100 + "%";
   });
@@ -114,6 +114,20 @@ async function main() {
   // Add an event listner for close button
   document.querySelector(".close").addEventListener("click", () => {
     document.querySelector(".left").style.left = "-120%";
+  });
+
+  // Add an event listner for previous song
+  document.addEventListener("DOMContentLoaded", () => {
+    const previous = document.getElementById("previous");
+
+    previous.addEventListener("click", () => {
+      console.log("this is previous song");
+    });
+  });
+
+  // Add an event listner for next song
+  next.addEventListener("click", () => {
+    console.log("this is next song");
   });
 }
 
