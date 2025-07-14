@@ -118,10 +118,14 @@
   padding: 16px;
 }
 
+.spotifyPlaylists h1 {
+  padding: 16px;
+}
+
 .cardContainer {
   /* margin: 25px; */
   display: flex;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
   overflow-y: scroll;
   max-height: 70vh;
