@@ -16,6 +16,7 @@ function secondsToMinutesSeconds(seconds) {
 
 let currentSong = new Audio();
 
+let songs;
 async function getSongs() {
   let a = await fetch("http://127.0.0.1:3000/songs/");
   let responce = await a.text();
@@ -46,7 +47,7 @@ const playMusic = (track, pause = false) => {
 };
 
 async function main() {
-  let songs = await getSongs();
+  songs = await getSongs();
   // playMusic(songs[1], true);
 
   let songUL = document
@@ -117,17 +118,24 @@ async function main() {
   });
 
   // Add an event listner for previous song
-  document.addEventListener("DOMContentLoaded", () => {
-    const previous = document.getElementById("previous");
+  // const previous = document.getElementById("previous");
 
-    previous.addEventListener("click", () => {
-      console.log("this is previous song");
-    });
+  previous.addEventListener("click", () => {
+    console.log("this is previous song");
+    let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
+    if (index - 1 > length) {
+      playMusic(songs[index - 1]);
+    }
   });
 
   // Add an event listner for next song
   next.addEventListener("click", () => {
     console.log("this is next song");
+    let index = songs.indexOf(currentSong.src.split("/").slice(-1)[0]);
+    if (index + 1 < songs.length) {
+      playMusic(songs[index + 1]);
+    }
+    // console.log(currentSong);
   });
 }
 
