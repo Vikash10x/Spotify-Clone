@@ -6,6 +6,7 @@
     z-index: 1;
     width: 370px;
     background-color: black;
+    padding: 0;
   }
   .right {
     width: 100vw;
