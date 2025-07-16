@@ -21,6 +21,11 @@
     /* width: 86vw; */
   }
 
+  .songVol {
+    flex-direction: column;
+    gap: 13px;
+  }
+
   .close {
     display: block;
     position: absolute;
