@@ -1,4 +1,7 @@
 console.log("Let's write java script");
+let currentSong = new Audio();
+let songs;
+let currFolder;
 
 function secondsToMinutesSeconds(seconds) {
   if (isNaN(seconds) || seconds < 0) {
@@ -14,21 +17,19 @@ function secondsToMinutesSeconds(seconds) {
   return `${formattedMinutes}:${formattedSeconds}`;
 }
 
-let currentSong = new Audio();
-
-let songs;
-async function getSongs() {
-  let a = await fetch("http://127.0.0.1:3000/songs/");
+async function getSongs(folder) {
+  currFolder = folder;
+  let a = await fetch(`http://127.0.0.1:3000/${folder}/`);
   let responce = await a.text();
   console.log(responce);
   let div = document.createElement("div");
   div.innerHTML = responce;
   let as = div.getElementsByTagName("a");
-  let songs = [];
+  songs = [];
   for (let index = 0; index < as.length; index++) {
     const element = as[index];
     if (element.href.endsWith(".mp3")) {
-      songs.push(element.href.split("/songs/")[1]);
+      songs.push(element.href.split(`/${folder}/`)[1]);
     }
   }
   return songs;
@@ -36,7 +37,7 @@ async function getSongs() {
 
 const playMusic = (track, pause = false) => {
   // let audio = new Audio("/songs/" + track);
-  currentSong.src = "/songs/" + track;
+  currentSong.src = `/${currFolder}/` + track;
   if (!pause) {
     currentSong.play();
     play.src = "./Img/pause.svg";
@@ -47,8 +48,8 @@ const playMusic = (track, pause = false) => {
 };
 
 async function main() {
-  songs = await getSongs();
-  // playMusic(songs[1], true);
+  songs = await getSongs("songs/ncs");
+  playMusic(songs[1], true);
 
   let songUL = document
     .querySelector(".songlist")
