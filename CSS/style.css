@@ -157,7 +157,7 @@
   object-fit: contain;
 }
 
-.play {
+.playSong {
   color: black;
   background-color: #1abc54;
   width: 28px;
@@ -277,6 +277,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   gap: 10px;
 }
 
