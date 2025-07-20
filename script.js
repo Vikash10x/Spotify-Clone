@@ -75,10 +75,55 @@ const playMusic = (track, pause = false) => {
   document.querySelector(".songtime").innerHTML = "00:00/00:00";
 };
 
+async function displayAlbums() {
+  let a = await fetch(`http://127.0.0.1:3000/songs/`);
+  let responce = await a.text();
+  let div = document.createElement("div");
+  div.innerHTML = responce;
+  let anchors = div.getElementsByTagName("a");
+  let cardContainer = document.querySelector(".cardContainer");
+  Array.from(anchors).forEach(async (e) => {
+    if (e.href.includes("/songs")) {
+      let folder = e.href.split("/").slice(-2)[0];
+      // Get the metadata of the folder
+      let a = await fetch(`http://127.0.0.1:3000/${folder}/info.json`);
+      let responce = await a.json();
+      console.log(responce);
+
+      cardContainer.innerHTML =
+        cardContainer.innerHTML +
+        `<div data-folder="cs" class="card ">
+                        <div class="playSong">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="black" height="24" width="24"
+                                viewBox="0 0 24 24">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                        <img src="${folder}/cover.jpg"
+                            alt="">
+
+                        <h2>${responce.title}</h2>
+                        <p>${responce.description}</p>
+                    </div>`;
+    }
+    // Load the playlist whenever card is clicked
+    Array.from(document.getElementsByClassName("card")).forEach((e) => {
+      // console.log(e);
+      e.addEventListener("click", async (item) => {
+        // console.log(item.currentTarget.dataset.folder);
+        songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`);
+      });
+    });
+  });
+}
+
 async function main() {
   // get the list of all song
   await getSongs("songs/cs");
   // playMusic(songs[1], true);
+
+  // Display all the albums on the image
+  displayAlbums();
 
   // Attech event listener of play, next, previous
   play.addEventListener("click", () => {
@@ -93,7 +138,7 @@ async function main() {
 
   // Listen for time update
   currentSong.addEventListener("timeupdate", () => {
-    console.log(currentSong.currentTime, currentSong.duration);
+    // console.log(currentSong.currentTime, currentSong.duration);
     document.querySelector(".songtime").innerHTML = `${secondsToMinutesSeconds(
       currentSong.currentTime
     )} / ${secondsToMinutesSeconds(currentSong.duration)}`;
@@ -146,15 +191,6 @@ async function main() {
       console.log("Setting volume to", e.target.value, "/100");
       currentSong.volume = parseInt(e.target.value) / 100;
     });
-
-  // Load the playlist whenever card is clicked
-  Array.from(document.getElementsByClassName("card")).forEach((e) => {
-    // console.log(e);
-    e.addEventListener("click", async (item) => {
-      // console.log(item.currentTarget.dataset.folder);
-      songs = await getSongs(`songs/${item.currentTarget.dataset.folder}`);
-    });
-  });
 }
 
 main();
