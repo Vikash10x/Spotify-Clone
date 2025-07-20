@@ -19,7 +19,7 @@ function secondsToMinutesSeconds(seconds) {
 
 async function getSongs(folder) {
   currFolder = folder;
-  let a = await fetch("http://127.0.0.1:3000/songs/");
+  let a = await fetch(`http://127.0.0.1:3000/${folder}/`);
   let responce = await a.text();
   console.log(responce);
   let div = document.createElement("div");
@@ -29,7 +29,7 @@ async function getSongs(folder) {
   for (let index = 0; index < as.length; index++) {
     const element = as[index];
     if (element.href.endsWith(".mp3")) {
-      songs.push(element.href.split("/songs/")[1]);
+      songs.push(element.href.split(`/${folder}/`)[1]);
     }
   }
   return songs;
@@ -37,7 +37,7 @@ async function getSongs(folder) {
 
 const playMusic = (track, pause = false) => {
   // let audio = new Audio("/songs/" + track);
-  currentSong.src = "/songs/" + track;
+  currentSong.src = `/songs/` + track;
   if (!pause) {
     currentSong.play();
     play.src = "./Img/pause.svg";
@@ -48,7 +48,7 @@ const playMusic = (track, pause = false) => {
 };
 
 async function main() {
-  songs = await getSongs("songs");
+  songs = await getSongs("songs/ncs");
   // playMusic(songs[1], true);
 
   let songUL = document
