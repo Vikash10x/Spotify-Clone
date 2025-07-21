@@ -90,7 +90,7 @@ async function displayAlbums() {
       let folder = e.href.split("/").slice(-2)[0];
       // Get the metadata of the folder
 
-      let a = await fetch(`http://127.0.0.1:3000/songs/songs/info.json`);
+      let a = await fetch(`http://127.0.0.1:3000/songs/info.json`);
       let responce = await a.json();
       console.log(responce);
 
@@ -103,7 +103,7 @@ async function displayAlbums() {
                               <path d="M8 5v14l11-7z" />
                           </svg>
                       </div>
-                      <img src="/${folder}/cover.jpg"
+                      <img src="/songs/cover.jpg"
                           alt="">
 
                       <h2>${responce.title}</h2>
